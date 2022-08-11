@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var popUpButton: UIButton!
     @IBOutlet weak var showTextButton: UIButton!
     
-    let defaultText = "- Карыстальнік абраў"
+    let defaultTextOne = "- The user has selected"
+    let defaultTextTwo = "User entered the following text: \n"
+    let defaultTextThree = "\nUser has selected the following settings:"
     
     var firstFlagCheckBox = false
     var secondFlagCheckBox = false
@@ -47,6 +49,7 @@ class ViewController: UIViewController {
     @IBAction func firstCheckBoxButtonClicked(_ sender: UIButton) {
         flagCheckBoxChecked(flag: &firstFlagCheckBox, object: sender)
     }
+    
     @IBAction func secondCheckBoxButtonClicked(_ sender: UIButton) {
         flagCheckBoxChecked(flag: &secondFlagCheckBox, object: sender)
     }
@@ -104,35 +107,39 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showTextButtonClicked(_ sender: UIButton) {
-        var checkboxText = ""
-        if firstFlagCheckBox == true {
-            checkboxText += "\n* \(firstCheckBoxLabel.text ?? String())  \(defaultText) \(firstCheckBoxLabel.text ?? String())"
+        let arrayFlagCheckBox = [firstFlagCheckBox, secondFlagCheckBox, thirdFlagCheckBox]
+        let arrayCheckBoxLabel = [firstCheckBoxLabel,secondCheckBoxLabel,thirdCheckBoxLabel]
+        let arrayFlagSwitch = [firstFlagSwitch,secondFlagSwitch,thirdFlagSwitch]
+        let arraySwithLabel = [firstSwitchLabel,secondSwitchLabel,thirdSwitchLabel]
+        var checkboxText = String()
+        var checkBoxIndex = Int()
+        var switchText = String()
+        var switchIndex = Int()
+        var optionText = String()
+        for flagCheckBox in arrayFlagCheckBox {
+                if flagCheckBox == true {
+                    checkboxText += "\n* \(arrayCheckBoxLabel[checkBoxIndex]?.text ?? String()) \(defaultTextOne) \(arrayCheckBoxLabel[checkBoxIndex]?.text ?? String())"
+            }
+            checkBoxIndex += 1
         }
-        if secondFlagCheckBox == true {
-            checkboxText += "\n* \(secondCheckBoxLabel.text ?? String()) \(defaultText) \(secondCheckBoxLabel.text ?? String())"
+        for flagSwitch in arrayFlagSwitch {
+            if flagSwitch == true {
+                switchText += "\n* \(arraySwithLabel[switchIndex]?.text ?? String()) \(defaultTextOne) \(arraySwithLabel[switchIndex]?.text ?? String())"
+                if switchIndex == 0 {
+                    secondFlagSwitch = false
+                    thirdFlagSwitch = false
+                } else if switchIndex == 1 {
+                    firstFlagSwitch = false
+                    thirdFlagSwitch = false
+                } else if switchIndex == 2{
+                    firstFlagSwitch = false
+                    secondFlagSwitch = false
+                }
+            }
+            switchIndex += 1
         }
-        if thirdFlagCheckBox == true {
-            checkboxText += "\n* \(thirdCheckBoxLabel.text ?? String())  \(defaultText) \(thirdCheckBoxLabel.text ?? String())"
-        }
-        var switchText = ""
-        if firstFlagSwitch == true {
-            switchText += "\n* \(firstSwitchLabel.text ?? String()) \(defaultText) \(firstSwitchLabel.text ?? String())"
-            secondFlagSwitch = false
-            thirdFlagSwitch = false
-        }
-        if secondFlagSwitch == true {
-            switchText += "\n* \(secondSwitchLabel.text ?? String())  \(defaultText) \(secondSwitchLabel.text ?? String())"
-            firstFlagSwitch = false
-            secondFlagSwitch = false
-        }
-        if thirdFlagSwitch == true {
-            switchText += "\n* \(thirdSwitchLabel.text ?? String())  \(defaultText) \(thirdSwitchLabel.text ?? String())"
-            firstFlagSwitch = false
-            secondFlagSwitch = false
-        }
-        var optionText = ""
-        optionText = "\n* \(popUpButton.titleLabel?.text ?? String())  \(defaultText) \(popUpButton.titleLabel?.text ?? String())"
-        outputTextView.text = "Карыстальнік увеў наступны тэкст: \n" + currentTextView.text + "\nКарыстальнік абраў наступныя наладкі:" + checkboxText + switchText + "\(optionText)"
+        optionText = "\n* \(popUpButton.titleLabel?.text ?? String())  \(defaultTextOne) \(popUpButton.titleLabel?.text ?? String())"
+        outputTextView.text = defaultTextTwo + currentTextView.text + defaultTextThree + checkboxText + switchText + "\(optionText)"
     }
     
     func flagCheckBoxChecked(flag: inout Bool, object: UIButton){
@@ -148,9 +155,9 @@ class ViewController: UIViewController {
     func setPopUpButton(){
         let optionClosure = {(action: UIAction) in print(action.title)}
         popUpButton.menu = UIMenu(children: [
-            UIAction(title:"опцыя #1",state: .on, handler: optionClosure),
-            UIAction(title:"опцыя #2",state: .on, handler: optionClosure),
-            UIAction(title:"опцыя #3", handler: optionClosure),
+            UIAction(title:"option #1",state: .on, handler: optionClosure),
+            UIAction(title:"option #2",state: .on, handler: optionClosure),
+            UIAction(title:"option #3", handler: optionClosure),
         ])
         popUpButton.showsMenuAsPrimaryAction = true
         popUpButton.changesSelectionAsPrimaryAction = true
