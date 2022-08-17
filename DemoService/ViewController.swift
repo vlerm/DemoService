@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -17,33 +18,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var thirdCheckBoxLabel: UILabel!
     @IBOutlet weak var currentTextView: UITextView!
     @IBOutlet weak var outputTextView: UITextView!
-    @IBOutlet weak var firstSwitchButton: UIButton!
-    @IBOutlet weak var secondSwitchButton: UIButton!
-    @IBOutlet weak var thirdSwitchButton: UIButton!
-    @IBOutlet weak var firstSwitchLabel: UILabel!
-    @IBOutlet weak var secondSwitchLabel: UILabel!
-    @IBOutlet weak var thirdSwitchLabel: UILabel!
+    @IBOutlet weak var firstRadioButton: UIButton!
+    @IBOutlet weak var secondRadioButton: UIButton!
+    @IBOutlet weak var thirdRadioButton: UIButton!
+    @IBOutlet weak var firstRadioButtonLabel: UILabel!
+    @IBOutlet weak var secondRadioButtonLabel: UILabel!
+    @IBOutlet weak var thirdRadioButtonLabel: UILabel!
     @IBOutlet weak var popUpButton: UIButton!
     @IBOutlet weak var showTextButton: UIButton!
-    
-    let defaultTextOne = "- The user has selected"
-    let defaultTextTwo = "User entered the following text: \n"
-    let defaultTextThree = "\nUser has selected the following settings:"
     
     var firstFlagCheckBox = false
     var secondFlagCheckBox = false
     var thirdFlagCheckBox = false
-    var firstFlagSwitch = false
-    var secondFlagSwitch = false
-    var thirdFlagSwitch = false
+    var firstFlagRadioButton = false
+    var secondFlagRadioButton = true
+    var thirdFlagRadioButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setPopUpButton()
-        setGradientBackground(view: self.view, colorTop: UIColor(red: 210/255, green: 109/255, blue: 180/255, alpha: 1).cgColor, colorBottom: UIColor(red: 52/255, green: 148/255, blue: 230/255, alpha: 1).cgColor)
-        currentTextView.layer.cornerRadius = 10
-        outputTextView.layer.cornerRadius = 10
-        showTextButton.layer.cornerRadius = 10
+        setupDefaultConfigurationForView()
     }
     
     @IBAction func firstCheckBoxButtonClicked(_ sender: UIButton) {
@@ -58,88 +51,135 @@ class ViewController: UIViewController {
         flagCheckBoxChecked(flag: &thirdFlagCheckBox, object: sender)
     }
     
-    @IBAction func firstSwitchButtonClicked(_ sender: UIButton) {
-        if firstFlagSwitch == false {
+    @IBAction func firstRadioButtonClicked(_ sender: UIButton) {
+        if firstFlagRadioButton == false {
             sender.setImage(UIImage(named: "correct"), for: .normal)
-            secondSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            thirdSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            firstFlagSwitch = true
-            secondFlagSwitch = false
-            thirdFlagSwitch = false
+            secondRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            thirdRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            firstFlagRadioButton = true
+            secondFlagRadioButton = false
+            thirdFlagRadioButton = false
         } else {
             sender.setImage(UIImage(named: "circle"), for: .normal)
-            firstFlagSwitch = false
+            firstFlagRadioButton = false
         }
-        secondFlagSwitch = false
-        thirdFlagSwitch = false
+        secondFlagRadioButton = false
+        thirdFlagRadioButton = false
     }
     
-    @IBAction func secondSwitchButtonClicked(_ sender: UIButton) {
-        if secondFlagSwitch == false {
+    @IBAction func secondRadioButtonClicked(_ sender: UIButton) {
+        if secondFlagRadioButton == false {
             sender.setImage(UIImage(named: "correct"), for: .normal)
-            firstSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            thirdSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            secondFlagSwitch = true
-            firstFlagSwitch = false
-            thirdFlagSwitch = false
+            firstRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            thirdRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            secondFlagRadioButton = true
+            firstFlagRadioButton = false
+            thirdFlagRadioButton = false
         } else {
             sender.setImage(UIImage(named: "circle"), for: .normal)
-            secondFlagSwitch = false
+            secondFlagRadioButton = false
         }
-        firstFlagSwitch = false
-        thirdFlagSwitch = false
+        firstFlagRadioButton = false
+        thirdFlagRadioButton = false
     }
     
-    @IBAction func thirdSwitchButtonClicked(_ sender: UIButton) {
-        if thirdFlagSwitch == false {
+    @IBAction func thirdRadioButtonClicked(_ sender: UIButton) {
+        if thirdFlagRadioButton == false {
             sender.setImage(UIImage(named: "correct"), for: .normal)
-            firstSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            secondSwitchButton.setImage(UIImage(named: "circle"), for: .normal)
-            thirdFlagSwitch = true
-            firstFlagSwitch = false
-            secondFlagSwitch = false
+            firstRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            secondRadioButton.setImage(UIImage(named: "circle"), for: .normal)
+            thirdFlagRadioButton = true
+            firstFlagRadioButton = false
+            secondFlagRadioButton = false
         } else {
             sender.setImage(UIImage(named: "circle"), for: .normal)
-            thirdFlagSwitch = false
+            thirdFlagRadioButton = false
         }
-        firstFlagSwitch = false
-        secondFlagSwitch = false
+        firstFlagRadioButton = false
+        secondFlagRadioButton = false
     }
     
     @IBAction func showTextButtonClicked(_ sender: UIButton) {
-        let arrayFlagCheckBox = [firstFlagCheckBox, secondFlagCheckBox, thirdFlagCheckBox]
-        let arrayCheckBoxLabel = [firstCheckBoxLabel,secondCheckBoxLabel,thirdCheckBoxLabel]
-        let arrayFlagSwitch = [firstFlagSwitch,secondFlagSwitch,thirdFlagSwitch]
-        let arraySwithLabel = [firstSwitchLabel,secondSwitchLabel,thirdSwitchLabel]
-        var checkboxText = String()
-        var checkBoxIndex = Int()
-        var switchText = String()
-        var switchIndex = Int()
-        var optionText = String()
-        for flagCheckBox in arrayFlagCheckBox {
-                if flagCheckBox == true {
-                    checkboxText += "\n* \(arrayCheckBoxLabel[checkBoxIndex]?.text ?? String()) \(defaultTextOne) \(arrayCheckBoxLabel[checkBoxIndex]?.text ?? String())"
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = String()
+        
+        let parameters = [
+          [
+            "key": "text",
+            "value": "\(String(describing: currentTextView.text ?? "N/A"))",
+            "type": "text"
+          ],
+          [
+            "key": "checkbox1",
+            "value": "\(String(describing: getSecretValueForCheckBox(firstFlagCheckBox)))",
+            "type": "text"
+          ],
+          [
+            "key": "checkbox2",
+            "value": "\(String(describing: getSecretValueForCheckBox(secondFlagCheckBox)))",
+            "type": "text"
+          ],
+          [
+            "key": "checkbox3",
+            "value": "\(String(describing: getSecretValueForCheckBox(thirdFlagCheckBox)))",
+            "type": "text"
+          ],
+          [
+            "key": "mode",
+            "value": "\(String(describing: getSecretValueForRadioButton()))",
+            "type": "text"
+          ],
+          [
+            "key": "selector",
+            "value": "\(String(describing: getSecretValueForOptions()))",
+            "type": "text"
+          ]] as [[String : Any]]
+
+        for parameter in parameters {
+          if parameter["disabled"] == nil {
+            let parameterName = parameter["key"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(parameterName)\""
+            if parameter["contentType"] != nil {
+              body += "\r\nContent-Type: \(parameter["contentType"] as! String)"
             }
-            checkBoxIndex += 1
+            let parameterType = parameter["type"] as! String
+            if parameterType == "text" {
+              let parameterValue = parameter["value"] as! String
+              body += "\r\n\r\n\(parameterValue)\r\n"
+            } else {
+              let parameterSrc = parameter["src"] as! String
+              let fileData = try? NSData(contentsOfFile:parameterSrc, options:[]) as Data
+              let fileContent = String(data: fileData ?? Data(), encoding: .utf8)!
+              body += "; filename=\"\(parameterSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            }
+          }
         }
-        for flagSwitch in arrayFlagSwitch {
-            if flagSwitch == true {
-                switchText += "\n* \(arraySwithLabel[switchIndex]?.text ?? String()) \(defaultTextOne) \(arraySwithLabel[switchIndex]?.text ?? String())"
-                if switchIndex == 0 {
-                    secondFlagSwitch = false
-                    thirdFlagSwitch = false
-                } else if switchIndex == 1 {
-                    firstFlagSwitch = false
-                    thirdFlagSwitch = false
-                } else if switchIndex == 2{
-                    firstFlagSwitch = false
-                    secondFlagSwitch = false
+        
+        body += "--\(boundary)--\r\n"
+        let postData = body.data(using: .utf8)
+        let urlString = "https://corpus.by/ServiceDemonstrator/api.php"
+        var request = URLRequest(url: URL(string: urlString)!,timeoutInterval: Double.infinity)
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        AF.request(request).responseData { responce in
+            switch responce.result {
+            case .success:
+                let responseJSON = try? JSONSerialization.jsonObject(with: responce.data ?? Data(), options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                DispatchQueue.main.async {
+                    self.outputTextView.text = "\(String(describing: responseJSON["result"] ?? String()))"
+                    print(String(describing: responseJSON["result"] ?? String()))
                 }
             }
-            switchIndex += 1
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
-        optionText = "\n* \(popUpButton.titleLabel?.text ?? String())  \(defaultTextOne) \(popUpButton.titleLabel?.text ?? String())"
-        outputTextView.text = defaultTextTwo + currentTextView.text + defaultTextThree + checkboxText + switchText + "\(optionText)"
+        
     }
     
     func flagCheckBoxChecked(flag: inout Bool, object: UIButton){
@@ -169,6 +209,51 @@ class ViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func getSecretValueForCheckBox(_ checkBox: Bool) -> Int {
+        if checkBox == true {
+            return 1
+        } else {
+            return 0
+        }
+    }
+    
+    func getSecretValueForRadioButton() -> String {
+        let arrayFlagRadioButton = [firstFlagRadioButton,secondFlagRadioButton,thirdFlagRadioButton]
+        let radioButtonText = "radiobutton"
+        var selectedIndex = Int()
+        var radioButtonIndex = Int()
+        for flagRadioButton in arrayFlagRadioButton {
+            if flagRadioButton == true {
+                selectedIndex = radioButtonIndex
+                if radioButtonIndex == 0 {
+                    secondFlagRadioButton = false
+                    thirdFlagRadioButton = false
+                } else if radioButtonIndex == 1 {
+                    firstFlagRadioButton = false
+                    thirdFlagRadioButton = false
+                } else if radioButtonIndex == 2{
+                    firstFlagRadioButton = false
+                    secondFlagRadioButton = false
+                }
+            }
+            radioButtonIndex += 1
+        }
+        return radioButtonText+String(selectedIndex+1)
+    }
+    
+    func getSecretValueForOptions() -> String {
+        return (popUpButton.titleLabel?.text?.replacingOccurrences(of: " #", with: ""))!
+    }
+
+    func setupDefaultConfigurationForView(){
+        setPopUpButton()
+        setGradientBackground(view: self.view, colorTop: UIColor(red: 210/255, green: 109/255, blue: 180/255, alpha: 1).cgColor, colorBottom: UIColor(red: 52/255, green: 148/255, blue: 230/255, alpha: 1).cgColor)
+        currentTextView.layer.cornerRadius = 10
+        outputTextView.layer.cornerRadius = 10
+        showTextButton.layer.cornerRadius = 10
+        secondRadioButton.setImage(UIImage(named: "correct"), for: .normal)
     }
     
 }

@@ -39,7 +39,7 @@
                                 <rect key="frame" x="16" y="88" width="383" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cyan="0.070000000000000007" magenta="0.052721362559999999" yellow="0.038052111860000001" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
-                                <string key="text">The Internet (or internet)[a] is the global system of interconnected computer networks that uses the Internet protocol suite (TCP/IP)[b] to communicate between networks and devices. It is a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies.</string>
+                                <string key="text">The Internet is the global system of interconnected computer networks that uses the Internet protocol suite (TCP/IP) to communicate between networks and devices.</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -58,7 +58,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="checkbox #2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-Rc-Pp1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="checkbox 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-Rc-Pp1">
                                 <rect key="frame" x="47" y="349" width="347" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -95,48 +95,48 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AA7-Z5-Vou" customClass="Checkbox" customModule="DemoService" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AA7-Z5-Vou">
                                 <rect key="frame" x="16" y="438" width="22" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="circle"/>
                                 <connections>
-                                    <action selector="firstSwitchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v2n-uA-0DI"/>
+                                    <action selector="firstRadioButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Td7-vh-t0f"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06r-Vz-lIJ" customClass="Checkbox" customModule="DemoService" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06r-Vz-lIJ">
                                 <rect key="frame" x="16" y="468" width="22" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="circle"/>
                                 <connections>
-                                    <action selector="secondSwitchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nx8-R8-lmk"/>
+                                    <action selector="secondRadioButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ySQ-bK-pcO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="switch #1 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPP-5f-jdh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="radiobutton #1 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPP-5f-jdh">
                                 <rect key="frame" x="46" y="443" width="347" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="switch #2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAX-nm-6IU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="radiobutton #2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAX-nm-6IU">
                                 <rect key="frame" x="46" y="474" width="347" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6T-mt-HI5" customClass="Checkbox" customModule="DemoService" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6T-mt-HI5">
                                 <rect key="frame" x="16" y="499" width="22" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="circle"/>
                                 <connections>
-                                    <action selector="thirdSwitchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7BH-jI-D2r"/>
+                                    <action selector="thirdRadioButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6IW-7Y-Znu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="switch #3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLo-ag-Fc8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="radiobutton #3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLo-ag-Fc8">
                                 <rect key="frame" x="46" y="505" width="347" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -185,19 +185,19 @@
                         <outlet property="currentTextView" destination="d6b-Dn-SR1" id="QuE-Vy-pp6"/>
                         <outlet property="firstCheckBoxButton" destination="QPK-aC-dGJ" id="cPo-zE-yLT"/>
                         <outlet property="firstCheckBoxLabel" destination="UkF-WV-KuT" id="L3d-Cc-wFM"/>
-                        <outlet property="firstSwitchButton" destination="AA7-Z5-Vou" id="3aH-IU-Isq"/>
-                        <outlet property="firstSwitchLabel" destination="wPP-5f-jdh" id="lDR-Mz-1AJ"/>
+                        <outlet property="firstRadioButton" destination="AA7-Z5-Vou" id="3aH-IU-Isq"/>
+                        <outlet property="firstRadioButtonLabel" destination="wPP-5f-jdh" id="lDR-Mz-1AJ"/>
                         <outlet property="outputTextView" destination="MNS-VM-UPo" id="M6i-RC-0YU"/>
                         <outlet property="popUpButton" destination="FgG-a6-KRk" id="aA0-wv-sum"/>
                         <outlet property="secondCheckBoxButton" destination="ZYz-uT-Fdz" id="uFl-UC-fFa"/>
                         <outlet property="secondCheckBoxLabel" destination="lGd-Rc-Pp1" id="Pyc-5N-1UK"/>
-                        <outlet property="secondSwitchButton" destination="06r-Vz-lIJ" id="i5y-yq-O2S"/>
-                        <outlet property="secondSwitchLabel" destination="BAX-nm-6IU" id="okl-3H-p0n"/>
+                        <outlet property="secondRadioButton" destination="06r-Vz-lIJ" id="i5y-yq-O2S"/>
+                        <outlet property="secondRadioButtonLabel" destination="BAX-nm-6IU" id="okl-3H-p0n"/>
                         <outlet property="showTextButton" destination="bxM-0v-Mbg" id="cj6-P3-8Hv"/>
                         <outlet property="thirdCheckBoxButton" destination="UhO-ZJ-Pn7" id="Xdg-dM-XKs"/>
                         <outlet property="thirdCheckBoxLabel" destination="0w4-bd-3WT" id="b59-9l-KOc"/>
-                        <outlet property="thirdSwitchButton" destination="C6T-mt-HI5" id="sI1-MC-Adp"/>
-                        <outlet property="thirdSwitchLabel" destination="WLo-ag-Fc8" id="kZu-e1-C14"/>
+                        <outlet property="thirdRadioButton" destination="C6T-mt-HI5" id="sI1-MC-Adp"/>
+                        <outlet property="thirdRadioButtonLabel" destination="WLo-ag-Fc8" id="kZu-e1-C14"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
